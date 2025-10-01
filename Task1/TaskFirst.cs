@@ -13,23 +13,40 @@ namespace Task1
             Console.WriteLine("Здравствуйте! Это лабораторная работа Даниила Чепурных РИС25-1-1 (0_0(");
             bool isNumber;
             string? input;
-            int n, m;
+            int n = 0;
+            int m = 0;
             do
             {
+                long bigAbsNumber;
                 Console.Write("Ведите число n: ");
                 input = Console.ReadLine();
-                isNumber = int.TryParse(input, out n);
+                isNumber = long.TryParse(input, out bigAbsNumber);
                 if (!isNumber)
                     Console.WriteLine("Ошибка: Вы ввели не число!");
+                else if (bigAbsNumber > 2147483647 || bigAbsNumber < -2147483648)
+                {
+                    Console.WriteLine("Ошибка: Вы ввели число выходящее за диапазон допустимых значений!");
+                    isNumber = false;
+                }
+                else
+                    n = (int) bigAbsNumber;
             } while (!isNumber);
 
             do
             {
-                Console.Write("Введите число m: ");
+                long bigAbsNumber;
+                Console.Write("Ведите число m: ");
                 input = Console.ReadLine();
-                isNumber = int.TryParse(input, out m);
+                isNumber = long.TryParse(input, out bigAbsNumber);
                 if (!isNumber)
                     Console.WriteLine("Ошибка: Вы ввели не число!");
+                else if (bigAbsNumber > 2147483647 || bigAbsNumber < -2147483648)
+                {
+                    Console.WriteLine("Ошибка: Вы ввели число выходящее за диапазон допустимых значений!");
+                    isNumber = false;
+                }
+                else
+                    m = (int)bigAbsNumber;
             } while (!isNumber);
 
             int result = --m - n++;

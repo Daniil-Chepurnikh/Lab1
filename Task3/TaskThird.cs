@@ -40,5 +40,5 @@ namespace Task3
             Console.WriteLine("Результат с типом float: " + ffraction);
         }
     }
-}
+} 
 
