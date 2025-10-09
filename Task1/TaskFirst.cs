@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Получаем числа (докажи, что я ЧИСЛО) :)))
+        // получаем числа (докажи, что я ЧИСЛО) :)))
         bool isNumber;
 
         int n;
@@ -40,16 +40,17 @@ class Program
 
         } while (!isNumber);
         
-        // Начинаем работать с приколами типа int :(((
+        // начинаем работать с приколами типа int :(((
         long nClone = n;
-        long mTemp = m - 1;
-        long nTemp = n + 1;
+        long mClone = m;
+        long mTemp = mClone - 1;
+        long nTemp = nClone + 1;
 
         // m = m верно n = n верно
         
         if (mTemp < int.MinValue) 
             Console.WriteLine("Значение m вышло за границы заданного типа!");
-        else if ((mTemp > 0 && nClone < 0 && mTemp + Math.Abs(nClone) > int.MaxValue) || (mTemp < 0 && nClone > 0 && mTemp - Math.Abs(nClone) < int.MinValue)) // заклинание полученное эмпирически на листочке бумаге
+        else if ((mTemp > 0 && nClone < 0 && mTemp + Math.Abs(nClone) > int.MaxValue) || (mTemp < 0 && nClone > 0 && mTemp - Math.Abs(nClone) < int.MinValue)) // заклинание, полученное эмпирически на листочке бумаге
             Console.WriteLine("Невозможно вычислить разность в заданном типе!");
         else
         {
@@ -59,10 +60,10 @@ class Program
 
         // m = m - 1 верно  n = n + 1 надо проверить
         
-        if (nTemp > int.MaxValue)
+        if (nTemp > int.MaxValue) // проверили
             Console.WriteLine("Значение n вышло за границы заданного типа!");
         else if (mTemp * mTemp > int.MaxValue)
-            Console.WriteLine("Невозможно вычислить прозведение в заданном типе!");
+            Console.WriteLine("Невозможно вычислить произведение в заданном типе!");
         else
         {
             bool result = m * m < n++;
@@ -78,28 +79,28 @@ class Program
             bool result = n-- > ++m;
             Console.WriteLine($"n = {n}, m = {m}, n-- > ++m = {result}");
         }
-        
+
         // m = m верно  n = n + 1 верно тк n + 2 верно
-
-
 
 
         // Начинаем работать с приколами типа double :((
 
-        if (Math.Tan(x) > double.MaxValue || Math.Tan(x) < double.MinValue || Math.Pow(5 - x, 4) > double.MaxValue || Math.Pow(5 - x, 4) < double.MinValue)
+        double tgX = Math.Tan(x);
+        double polynomial = Math.Pow(5 - x, 4);
+
+        if (double.IsInfinity(tgX) || double.IsNaN(polynomial) || double.IsInfinity(polynomial)) // проверяем результаты на нечисло и бесконечность
             Console.WriteLine("Число слишком большое/малое для вычисления!");
         else
         {
-            double tgX = Math.Tan(x);
-            double polynomial = Math.Pow(5 - x, 4);
+            double fraction = tgX / x;
 
             if (x == 0 || Math.Cos(x) == 0)
                 Console.WriteLine("Нельзя вычислить!");
-            else if (tgX / x > double.MaxValue || tgX / x < double.MinValue)
+            else if (double.IsInfinity(fraction) || double.IsNaN(fraction))
                 Console.WriteLine("Число слишком большое/малое для вычисления!");
             else
             {
-                double result = tgX / x - polynomial;
+                double result = fraction - polynomial;
                 Console.WriteLine($"x = {x}, tg(x) / x - (5 - x)^4 = {result}");
             }
         }
