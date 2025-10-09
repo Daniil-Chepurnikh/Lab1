@@ -83,8 +83,7 @@ class Program
         // m = m верно  n = n + 1 верно тк n + 2 верно
 
 
-        // Начинаем работать с приколами типа double :((
-
+        // начинаем работать с приколами типа double :((
         double tgX = Math.Tan(x);
         double polynomial = Math.Pow(5 - x, 4);
 
