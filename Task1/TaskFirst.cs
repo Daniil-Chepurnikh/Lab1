@@ -43,24 +43,25 @@ class Program
         // начинаем работать с приколами типа int :(((
         long nClone = n;
         long mClone = m;
-        long mTemp = mClone - 1;
-        long nTemp = nClone + 1;
-
+        long nTemp = n;
+        long mTemp = m;
         // m = m верно n = n верно
-        
-        if (mTemp < int.MinValue) 
+
+        if (mClone - 1 < int.MinValue) 
             Console.WriteLine("Значение m вышло за границы заданного типа!");
-        else if ((mTemp > 0 && nClone < 0 && mTemp + Math.Abs(nClone) > int.MaxValue) || (mTemp < 0 && nClone > 0 && mTemp - Math.Abs(nClone) < int.MinValue)) // заклинание, полученное эмпирически на листочке бумаге
+        else if ((mClone - 1 > 0 && nClone < 0 && mClone - 1 + Math.Abs(nClone) > int.MaxValue) || (mClone - 1 < 0 && nClone > 0 && mClone - 1 - Math.Abs(nClone) < int.MinValue)) // заклинание, полученное эмпирически на листочке бумаге
             Console.WriteLine("Невозможно вычислить разность в заданном типе!");
         else
         {
             int result = --m - n++;
             Console.WriteLine($"n = {n}, m = {m}, --m - n++ = {result}");
+            nTemp = nClone + 1;
+            mTemp = mClone - 1;
         }
 
         // m = m - 1 верно  n = n + 1 надо проверить
-        
-        if (nTemp > int.MaxValue) // проверили
+
+        if (nTemp + 1 > int.MaxValue) // проверили
             Console.WriteLine("Значение n вышло за границы заданного типа!");
         else if (mTemp * mTemp > int.MaxValue)
             Console.WriteLine("Невозможно вычислить произведение в заданном типе!");
@@ -68,6 +69,7 @@ class Program
         {
             bool result = m * m < n++;
             Console.WriteLine($"n = {n}, m = {m}, m * m < n++ = {result}");
+            nTemp +=1;
         }     
 
         // m = m - 1 верно  n = n + 2 надо проверить
